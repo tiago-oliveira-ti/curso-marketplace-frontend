@@ -7,12 +7,10 @@
 
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
   background: #f9f9f9;
   color: #333;
 }
 
-/* Header */
 header {
   background: #4CAF50;
   color: white;
@@ -20,9 +18,7 @@ header {
   text-align: center;
 }
 
-nav {
-  margin-top: 1rem;
-}
+nav { margin-top: 1rem; }
 
 nav button {
   margin: 0.5rem;
@@ -35,13 +31,15 @@ nav button {
   transition: background 0.3s;
 }
 
-nav button:hover {
-  background: #e0e0e0;
+nav button:hover { background: #e0e0e0; }
+
+/* Botão de filtro ativo */
+nav button.ativo {
+  background: #388E3C;
+  color: white;
 }
 
-.actions {
-  margin-top: 1rem;
-}
+.actions { margin-top: 1rem; }
 
 .actions button {
   margin: 0.5rem;
@@ -53,7 +51,6 @@ nav button:hover {
   border-radius: 5px;
 }
 
-/* Container de cursos */
 #cursos-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -74,9 +71,7 @@ nav button:hover {
   border-radius: 5px;
 }
 
-.curso-card h3 {
-  margin: 0.5rem 0;
-}
+.curso-card h3 { margin: 0.5rem 0; }
 
 .curso-card button {
   margin: 0.3rem;
@@ -89,34 +84,30 @@ nav button:hover {
   transition: background 0.3s;
 }
 
-.curso-card button:hover {
-  background: #45a049;
+.curso-card button:hover { background: #45a049; }
+
+/* Botão de favoritar quando já favoritado */
+.curso-card button.favoritado {
+  background: #FFA000;
 }
+
+/* Overlay escuro dos modais */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal-overlay.hidden { display: none; }
 
 /* Dark Mode */
-body.dark {
-  background: #121212;
-  color: #f1f1f1;
-}
-
-body.dark header {
-  background: #333;
-}
-
-body.dark .curso-card {
-  background: #1e1e1e;
-  color: #f1f1f1;
-}
-
-body.dark nav button {
-  background: #444;
-  color: #f1f1f1;
-}
-
-body.dark .actions button {
-  background: #444;
-  color: #f1f1f1;
-}
+body.dark { background: #121212; color: #f1f1f1; }
+body.dark header { background: #333; }
+body.dark .curso-card { background: #1e1e1e; color: #f1f1f1; }
+body.dark nav button { background: #444; color: #f1f1f1; }
+body.dark nav button.ativo { background: #81C784; color: #121212; }
+body.dark .actions button { background: #444; color: #f1f1f1; }
 
 /* Modal */
 .modal {
@@ -129,17 +120,48 @@ body.dark .actions button {
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   z-index: 1000;
+  min-width: 300px;
 }
 
-.modal.hidden {
-  display: none;
+.modal.hidden { display: none; }
+body.dark .modal { background: #2a2a2a; }
+
+/* Item do carrinho */
+#carrinho-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
 }
 
-body.dark .modal {
-  background: #2a2a2a;
+#carrinho-lista li button {
+  background: none;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
-/* Footer */
+/* Toast de notificação */
+#toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #323232;
+  color: white;
+  padding: 0.6rem 1.4rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+#toast.visivel { opacity: 1; }
+
 footer {
   background: #4CAF50;
   color: white;
@@ -148,16 +170,7 @@ footer {
   margin-top: 2rem;
 }
 
-/* Responsividade */
 @media (max-width: 600px) {
-  nav {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  nav { display: flex; flex-direction: column; }
+  .actions { display: flex; flex-direction: column; align-items: center; }
 }
